@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<!--suppress JSJQueryEfficiency -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Grade calculator by Fat Halimi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="jquery/jquery/jquery-ui.css">
+    <script src="jquery/jquery/jquery.js"></script>
+    <script src="jquery/jquery/jquery-ui.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+
+    <script type="text/javascript">
+        ///////////////////////
+
+
+        $(document).ready(function () {
+
+            $("html,body").scrollTop(0);
+
+            $("#hrID").hide()
+
+            var flag = 0;
+            $("#result").hide()
+            isDisabled = 0;
+            isDisabledFinalExam = 0;
+            $("#spinner").hide()
+
+            $('#firstExamPoints').on('input', function () {
+
+                if ($("#firstExamPoints").val() !== "") {
+                    $("#finalExamPoints, #finalExamPercentage ").attr('disabled', 'disabled');
+                    isDisabledFinalExam = 1 //gets disabled when points entered for first exam
+                    console.log(isDisabledFinalExam)
+                    $("#finalExamPoints, #finalExamPercentage ").css("background-color", "lightgray")
+
+
+                }
+
+                if ($("#firstExamPoints").val() === "") {
+                    $("#finalExamPoints, #finalExamPercentage  ").attr('enabled', 'enabled');
+                    isDisabledFinalExam = 0 //undo disable when first exam is empty
+                    console.log(isDisabledFinalExam)
+                    $("#finalExamPoints, #finalExamPercentage  ").css("background-color", "white")
+
+
+                }
+
+            });
+
+            $('#firstExamPercentage').on('input', function () {
+
+                if ($("#firstExamPercentage").val() !== "") {
+                    $("#finalExamPoints, #finalExamPercentage ").attr('disabled', 'disabled');
+                    isDisabledFinalExam = 1 //gets disabled when points entered for first exam
+                    console.log(isDisabledFinalExam)
+                    $("#finalExamPoints, #finalExamPercentage ").css("background-color", "lightgray")
+
+                }
+
+                if ($("#firstExamPercentage").val() === "") {
+                    $("#finalExamPoints, #finalExamPercentage  ").attr('enabled', 'enabled');
+                    isDisabledFinalExam = 0 //undo disable when first exam is empty
+                    console.log(isDisabledFinalExam)
+                    $("#finalExamPoints, #finalExamPercentage ").css("background-color", "white")
+
+                }
+
+            });
+            $('#secondExamPoints').on('input', function () {
+
+                if ($("#secondExamPoints").val() !== "") {
+                    $("#finalExamPoints, #finalExamPercentage ").attr('disabled', 'disabled');
+                    isDisabledFinalExam = 1 //gets disabled when points entered for first exam
+                    console.log(isDisabledFinalExam)
+                    $("#finalExamPoints, #finalExamPercentage ").css("background-color", "lightgray")
+
+                }
+
+                if ($("#secondExamPoints").val() === "") {
+                    $("#finalExamPoints, #finalExamPercentage  ").attr('enabled', 'enabled');
+                    isDisabledFinalExam = 0 //undo disable when first exam is empty
+                    console.log(isDisabledFinalExam)
+                    $("#finalExamPoints, #finalExamPercentage ").css("background-color", "white")
+
+                }
+
+            });
+
+            $('#secondExamPercentage').on('input', function () {
+
+                if ($("#secondExamPercentage").val() !== "") {
+                    $("#finalExamPoints, #finalExamPercentage ").attr('disabled', 'disabled');
+                    isDisabledFinalExam = 1 //gets disabled when points entered for first exam
+                    console.log(isDisabledFinalExam)
+                    $("#finalExamPoints, #finalExamPercentage ").css("background-color", "lightgray")
+
+                }
+
+                if ($("#secondExamPercentage").val() === "") {
+                    $("#finalExamPoints, #finalExamPercentage  ").attr('enabled', 'enabled');
+                    isDisabledFinalExam = 0 //undo disable when first exam is empty
+                    console.log(isDisabledFinalExam)
+                    $("#finalExamPoints, #finalExamPercentage ").css("background-color", "white")
+
+                }
+
+            });
+
+
+            $('#finalExamPoints').on('input', function () {
+
+                if ($("#finalExamPoints").val() !== "") {
+                    $("#firstExamPoints, #firstExamPercentage, #secondExamPoints, #secondExamPercentage ").attr('disabled', 'disabled');
+                    isDisabled = 1 //gets disabled exam field when final exam points are enterred
+                    console.log(isDisabled)
+                    $("#firstExamPoints, #firstExamPercentage, #secondExamPoints, #secondExamPercentage ").css("background-color", "lightgray")
+                }
+                if ($("#finalExamPoints").val() === "") {
+                    $("#firstExamPoints, #firstExamPercentage,#secondExamPoints, #secondExamPercentage ").attr('enabled', 'enabled');
+                    isDisabled = 0 //first exam second exam gets enabled when final exam points are emptyu
+                    console.log(isDisabled)
+                    $("#firstExamPoints, #firstExamPercentage, #secondExamPoints, #secondExamPercentage ").css("background-color", "white")
+
+
+                }
+            });
+            $('#finalExamPercentage').on('input', function () {
+
+                if ($("#finalExamPercentage").val() !== "") {
+                    $("#firstExamPoints, #firstExamPercentage, #secondExamPoints, #secondExamPercentage ").attr('disabled', 'disabled');
+                    isDisabled = 1 //gets disabled exam field when final exam points are enterred
+                    console.log(isDisabled)
+                    $("#firstExamPoints, #firstExamPercentage, #secondExamPoints, #secondExamPercentage ").css("background-color", "lightgray")
+
+                }
+                if ($("#finalExamPercentage").val() === "") {
+                    $("#firstExamPoints, #firstExamPercentage,  #secondExamPoints, #secondExamPercentage ").attr('enabled', 'enabled');
+                    isDisabled = 0 //first exam second exam gets enabled when final exam points are emptyu
+                    console.log(isDisabled)
+                    $("#firstExamPoints, #firstExamPercentage, #secondExamPoints, #secondExamPercentage ").css("background-color", "white")
+
+                }
+            });
+
+
+            $("#calculate").click(function () {
+                $("#spinner").show()
+
+
+                thrown = 0
+                if (isDisabled === 0) {
+                    if (flag < 2) {
+
+                        if ($("#firstExamPoints").val() === "" || $("#secondExamPoints").val() === "" || $("#firstExamPercentage").val() === "" || $("#secondExamPercentage").val() === "") {
+                            alert("First exam points and second exam points and weight on grade are required")
+                            thrown = 1
+
+
+                        } else
+                            flag += 2;
+                    }
+                }
+
+
+                if (isDisabledFinalExam === 0) {
+                    if ($("#finalExamPoints").val() === "" || $("#finalExamPercentage").val() === "" && thrown === 0) {
+                        alert("Final exam points and weight on grade are required")
+
+                    } else
+                        flag += 2;
+                }
+                if ($("#assigmentsPoints").val() !== "" && $("#assigmentsPercentage").val() === "") {
+
+                    alert("Assigments points are inserted, assigments weight on grade is required")
+                    flag--;
+
+                }
+
+
+                if ($("#assigmentsPoints").val() === "" && $("#assigmentsPercentage").val() !== "") {
+
+                    alert("Assigments weight on grade is inserted, assigment points are required")
+                    flag--
+                }
+
+                if ($("#presencePoints").val() !== "" && $("#presencePercentage").val() === "") {
+
+                    alert("Presence points are inserted, it is needed to insert presence points weight on grade")
+                    flag--;
+
+                }
+
+
+                if ($("#presencePoints").val() === "" && $("#presencePercentage").val() !== "") {
+
+                    alert("Presence points weight on grade is inserted, please insert amount of presence points.")
+                    flag--
+                }
+
+                if ($("#bonusPoints").val() !== "" && $("#bonusPercentage").val() === "") {
+
+                    alert("Bonus points are inserted, it is needed to insert bonus points weight on grade")
+                    flag--;
+
+                }
+
+
+                if ($("#bonusPoints").val() === "" && $("#bonusPercentage").val() !== "") {
+
+                    alert("Bonus points weight on grade is inserted, please insert amount of bonus points.")
+                    flag--
+                }
+
+
+                success = "success"
+                if (flag === 2) {
+                    //$("#result").show()
+                    $("#hrID").show()
+                    console.log(success)
+
+                    $(this).css({
+                        borderStyle: "inset",
+                        cursor: "wait"
+                    });
+                    setTimeout(function () {
+                        $("#spinner").hide()
+                    }, 1000)
+
+                    setTimeout(function () {
+                        $("#result").slideDown(1500, function () {
+                            $(this)
+
+                                .filter(".middle")
+                                .css("background", "yellow")
+                                .focus();
+
+                        });
+                    }, 1000)
+
+
+                } else {
+                    location.reload()
+
+                }
+
+                firstExamPoints = parseFloat($("#firstExamPoints").val())
+                secondExamPoints = parseFloat($("#secondExamPoints").val())
+                finalExamPoints = parseFloat($("#finalExamPoints").val())
+                finalExamPercentage = parseFloat($("#finalExamPercentage").val()) / 100
+                firstExamPercentage = parseFloat($("#firstExamPercentage").val()) / 100
+                secondExamPercentage = parseFloat($("#secondExamPercentage").val()) / 100
+                assigmentsPoints = parseFloat($("#assigmentsPoints").val())
+                assigmentsPercentage = parseFloat($("#assigmentsPercentage").val()) / 100
+                presencePoints = parseFloat($("#presencePoints").val())
+                presencePercentage = parseFloat($("#presencePercentage").val()) / 100
+                bonusPoints = parseFloat($("#bonusPoints").val())
+                bonusPercentage = parseFloat($("#bonusPercentage").val()) / 100
+
+
+                rezultatFirstExamPercentage = parseFloat(firstExamPoints) * parseFloat(firstExamPercentage);
+                console.log(rezultatFirstExamPercentage)
+
+                if ($('#firstExamCheckButton').is(":checked")) //scaled percentage calculation
+                {
+                    rezultatFirstExamPercentage = (parseFloat(firstExamPoints) / parseFloat(firstExamPercentage)) * parseFloat(firstExamPercentage)
+
+
+                }
+
+                rezutatSecondExamPercentage = parseFloat(secondExamPoints) * parseFloat(secondExamPercentage);
+                console.log(rezutatSecondExamPercentage);
+
+                if ($('#secondExamCheckButton').is(":checked")) //scaled percentage calculation
+                {
+                    rezutatSecondExamPercentage = (parseFloat(secondExamPoints) / parseFloat(secondExamPercentage)) * parseFloat(secondExamPercentage)
+                }
+
+                rezultatFinalExamPercentage = parseFloat(finalExamPoints) * parseFloat(finalExamPercentage)
+                console.log(rezultatFinalExamPercentage)
+
+                if ($('#finalExamCheckButton').is(":checked")) //scaled percentage calculation
+                {
+                    rezultatFinalExamPercentage = (parseFloat(finalExamPoints) / parseFloat(finalExamPercentage)) * parseFloat(finalExamPercentage)
+                }
+
+                rezultatAssigmentsPercentage = parseFloat(assigmentsPoints) * parseFloat(assigmentsPercentage)
+                console.log(rezultatAssigmentsPercentage)
+
+                if ($('#assigmentsCheckButton').is(":checked")) //scaled percentage calculation
+                {
+                    rezultatAssigmentsPercentage = (parseFloat(assigmentsPoints) / parseFloat(assigmentsPercentage)) * parseFloat(assigmentsPercentage)
+                }
+
+                rezultatBonusPercentage = parseFloat(bonusPoints) * parseFloat(bonusPercentage)
+                console.log(rezultatBonusPercentage)
+
+                if ($('#bonusCheckButton').is(":checked")) //scaled percentage calculation
+                {
+                    rezultatBonusPercentage = (parseFloat(bonusPoints) / parseFloat(bonusPercentage)) * parseFloat(bonusPercentage)
+                }
+
+                rezultatPresencePoints = parseFloat(presencePoints) * parseFloat(presencePercentage)
+                console.log(rezultatPresencePoints)
+
+                if ($('#presenceCheckButton').is(":checked")) //scaled percentage calculation
+                {
+                    rezultatPresencePoints = (parseFloat(presencePoints) / parseFloat(presencePercentage)) * parseFloat(presencePercentage)
+                }
+
+                if (isNaN(rezultatFirstExamPercentage))
+                    rezultatFirstExamPercentage = 0
+
+                if (isNaN(rezutatSecondExamPercentage))
+                    rezutatSecondExamPercentage = 0
+
+                if (isNaN(rezultatFinalExamPercentage))
+                    rezultatFinalExamPercentage = 0
+
+                if (isNaN(rezultatAssigmentsPercentage))
+                    rezultatAssigmentsPercentage = 0
+
+                if (isNaN(rezultatPresencePoints))
+                    rezultatPresencePoints = 0
+
+                if (isNaN(rezultatBonusPercentage))
+                    rezultatBonusPercentage = 0
+
+
+                rezultatTotalPercentage = (rezultatFirstExamPercentage + rezutatSecondExamPercentage + rezultatFinalExamPercentage + rezultatAssigmentsPercentage + rezultatBonusPercentage + rezultatPresencePoints).toFixed(2)
+
+                console.log(rezultatBonusPercentage)
+
+                $("#firstExamPercentageShow").append(rezultatFirstExamPercentage)
+                $("#secondExamPercentageShow").append(rezutatSecondExamPercentage)
+                $("#finalExamPercentageShow").append(rezultatFinalExamPercentage)
+                $("#assigmentsPercentageShow").append(rezultatAssigmentsPercentage)
+                $("#presencePercentageShow").append(rezultatPresencePoints)
+                $("#bonusPercentageShow").append(rezultatBonusPercentage)
+                $("#TotalPercentageShow").append(rezultatTotalPercentage)
+
+                // console.log(firstExamPoints)
+                // console.log(firstExamPercentage)
+                // console.log(secondExamPoints)
+                // console.log(secondExamPercentage)
+                // console.log(finalExamPoints)
+                // console.log(finalExamPercentage)
+                // console.log(assigmentsPoints)
+                // console.log(assigmentsPercentage)
+                // console.log(presencePoints)
+                // console.log(presencePercentage)
+                // console.log(bonusPoints)
+                // console.log(bonusPercentage)
+
+
+                //  $("input").prop('disabled', false);
+
+
+                $("#calculateAgain").click(function () {
+                    location.reload()
+
+                })
+
+
+            })
+
+            $("#gjuha").change(function () {
+                if ($(this).val() === '1') {
+                    window.open("finalGrade.html", "_self")
+                }
+            })
+
+            $("#calculateFinal").click(function () {
+                window.open("GradeCalculator.html")
+            })
+
+
+        })
+
+
+    </script>
+    <style>
+        .display-6.custom {
+            font-size: 25px;
+        }
+
+        .totalInstallments {
+            margin-bottom: 1vw;
+            margin-left: 4px;
+        }
+
+        input {
+            display: block;
+
+        }
+
+        @media only screen and (max-width: 599px) {
+            input, #percentageOnFinal, #returnAmt {
+                width: 200%;
+            }
+
+            .display-6.custom {
+                text-align: center;
+                font-size: 18px;
+            }
+        }
+
+
+        @media only screen and (min-width: 930px) {
+
+
+            .display-6.custom {
+
+                font-size: 20px;
+                text-align: center;
+            }
+
+            .display-6.custom.R {
+
+                font-size: 20px;
+                text-align: start;
+            }
+
+            .btn-outline-secondary {
+                height: 5vw;
+                width: 25vw;
+                text-align: center;
+            }
+
+            .input-group-text {
+                height: 5vw;
+
+            }
+
+            #firstExamPoints, #secondExamPoints, #finalExamPoints, #assigmentsPoints, #presencePoints, #bonusPoints {
+                width: 200%;
+            }
+
+            span.display-6.custom.R {
+                font-size: 16px;
+
+            }
+
+        }
+
+        @media only screen and (min-width: 1890px) {
+
+
+            .display-6.custom {
+
+                font-size: 30px;
+                text-align: center;
+            }
+
+            .display-6.custom.R {
+
+                font-size: 30px;
+            }
+
+            span.display-6.custom.R {
+
+                font-size: 26px;
+            }
+
+            .btn-outline-secondary {
+                height: 5vw;
+                width: 15vw;
+                font-size: 20px;
+            }
+
+            .input-group-text {
+                height: 3vw;
+
+            }
+
+            #firstExamPoints, #secondExamPoints, #finalExamPoints, #assigmentsPoints, #presencePoints, #bonusPoints {
+                width: 380%;
+            }
+
+            .input-group-text {
+                font-size: 1.3rem;
+            }
+
+
+        }
+
+        @media only screen and (max-width: 377px) {
+            input, #percentageOnFinal, #returnAmt {
+                width: 200%;
+            }
+
+            .display-6.custom {
+                text-align: center;
+                font-size: 18px;
+            }
+
+            .display-6.custom.R {
+
+                text-align: start;
+            }
+
+            .btn-outline-secondary {
+                height: 17vw;
+            }
+
+
+        }
+
+
+    </style>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+
+
+</head>
+
+
+<body>
+
+<div class="container ">
+    <br>
+    <div class="row text-end">
+        <div class="col">
+            <label for="gjuha">Ndro gjuhën</label><br>
+
+            <select name="gjuha" id="gjuha">
+                <option value="bosh">Shqip</option>
+                <option id="shqip" value="1"> English</option>
+            </select>
+        </div>
+
+    </div>
+    <br>
+
+    <div class="row text-center">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-12">
+            <div class="display-6">Kalkulator i notës përfundimtare</div>
+        </div>
+    </div>
+    <br>
+
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+        </symbol>
+        <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+        </symbol>
+        <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+        </symbol>
+    </svg>
+
+    <div class="alert alert-primary d-flex align-items-center  alert-dismissible fade show " style="text-align: justify"
+         role="alert">
+        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
+            <use xlink:href="#info-fill"/>
+        </svg>
+        <div>
+
+            Në qoftë se pikët nga testimet janë të skaluara në bazë të përqindjes së aktivitetit/testimit në notë, ju lutemi klikoni në butonin adekuat pranë vendit ku do fusni përqindjen adekuate.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+        </div>
+    </div>
+
+
+    <div class="row  ">
+        <div class="col-sm-7 col-md-6 col-lg-6 col-6"><br>
+            <p class="display-6 custom">Gjithsej pikë nga testi i parë</p>
+            <div class="col-sm-5 col-md-6 col-lg-3 col-6  ">
+                <input type="number" min="0" placeholder="Insert number" id="firstExamPoints" class="input-group-text"
+                       style="background-color: white">
+            </div>
+        </div>
+
+        <div class="col-sm-7 col-md-6 col-lg-6 col-6"><br>
+            <p class="display-6 custom">Përqindja në notë nga testi i parë</p>
+            <div class="input-group mb-3 col-sm-5 col-md-6 col-lg-3 col-6 ">
+                <div class="input-group-text">
+                    <input class="form-check-input mt-0" type="checkbox" id="firstExamCheckButton"
+                           title="Check button if percentage is scaled" value=""
+                           aria-label="Checkbox for following text input">
+                </div>
+                <input type="text" class="form-control input-group-text" id="firstExamPercentage"
+                       aria-label="Text input with checkbox" placeholder="%" style="background-color: white">
+            </div>
+        </div>
+
+
+    </div>
+    <div class="row  ">
+
+        <div class="col-sm-7 col-md-6 col-lg-6 col-6"><br>
+            <p class="display-6 custom">Gjithsej pikë nga testi i dytë</p>
+            <div class="col-sm-5 col-md-6 col-lg-3 col-6  ">
+                <input type="number" min="0" placeholder="Insert number" id="secondExamPoints" class="input-group-text"
+                       style="background-color: white">
+            </div>
+        </div>
+        <div class="col-sm-7 col-md-6 col-lg-6 col-6"><br>
+            <p class="display-6 custom">Përqindja në notë nga testi i dytë</p>
+            <div class="input-group mb-3 col-sm-5 col-md-6 col-lg-3 col-6  ">
+                <div class="input-group-text">
+                    <input class="form-check-input mt-0" type="checkbox" id="secondExamCheckButton"
+                           title="Check button if percentage is scaled" value=""
+                           aria-label="Checkbox for following text input">
+                </div>
+                <input type="text" class="form-control input-group-text" id="secondExamPercentage"
+                       aria-label="Text input with checkbox" placeholder="%" style="background-color: white">
+            </div>
+        </div>
+
+    </div>
+    <br>
+    <div class="row  ">
+        <div class="col-sm-7 col-md-6 col-lg-6 col-6">
+            <p class="display-6 custom">Gjithsej pikë nga provimi</p>
+            <div class="col-sm-5 col-md-6 col-lg-3 col-6  ">
+                <input type="number" min="0" placeholder="Insert number" id="finalExamPoints" class="input-group-text"
+                       style="background-color: white">
+            </div>
+        </div>
+        <div class="col-sm-7 col-md-6 col-lg-6 col-6 ">
+            <p class="display-6 custom">Përiqndja në notë nga provimi</p>
+            <div class="input-group mb-3 col-sm-5 col-md-6 col-lg-3 col-6  ">
+                <div class="input-group-text">
+                    <input class="form-check-input mt-0" type="checkbox" id="finalExamCheckButton"
+                           title="Check button if percentage is scaled" value=""
+                           aria-label="Checkbox for following text input">
+                </div>
+                <input type="text" class="form-control input-group-text" id="finalExamPercentage"
+                       aria-label="Text input with checkbox" placeholder="%" style="background-color: white">
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row  ">
+        <div class="col-sm-7 col-md-6 col-lg-6 col-6">
+            <p class="display-6 custom">Gjithsej pikë nga detyrat</p>
+            <div class="col-sm-5 col-md-6 col-lg-3 col-6  ">
+                <input type="number" min="0" placeholder="Insert number" id="assigmentsPoints" class="input-group-text"
+                       style="background-color: white">
+            </div>
+        </div>
+        <div class="col-sm-7 col-md-6 col-lg-6 col-6 ">
+            <p class="display-6 custom">Përiqindja në notë nga detyrat</p>
+            <div class="input-group mb-3 col-sm-5 col-md-6 col-lg-3 col-6 ">
+                <div class="input-group-text">
+                    <input class="form-check-input mt-0" type="checkbox" id="assigmentsCheckButton"
+                           title="Check button if percentage is scaled" value=""
+                           aria-label="Checkbox for following text input">
+                </div>
+                <input type="text" class="form-control input-group-text" id="assigmentsPercentage"
+                       aria-label="Text input with checkbox" placeholder="%" style="background-color: white"></div>
+        </div>
+    </div>
+
+    <br>
+    <div class="row  ">
+        <div class="col-sm-7 col-md-6 col-lg-6 col-6">
+            <p class="display-6 custom">Gjithsej pikë nga prezenca</p>
+            <div class="col-sm-5 col-md-6 col-lg-3 col-6  ">
+                <input type="number" min="0" placeholder="Insert number" id="presencePoints" class="input-group-text"
+                       style="background-color: white"></div>
+        </div>
+        <div class="col-sm-7 col-md-6 col-lg-6 col-6 ">
+            <p class="display-6 custom">Përqindja në notë nga prezenca </p>
+            <div class="input-group mb-3 col-sm-5 col-md-6 col-lg-3 col-6 ">
+                <div class="input-group-text">
+                    <input class="form-check-input mt-0" type="checkbox" id="presenceCheckButton"
+                           title="Check button if percentage is scaled" value=""
+                           aria-label="Checkbox for following text input">
+                </div>
+                <input type="text" class="form-control input-group-text" id="presencePercentage"
+                       aria-label="Text input with checkbox" placeholder="%" style="background-color: white"></div>
+        </div>
+    </div>
+
+    <br>
+    <div class="row  ">
+        <div class="col-sm-7 col-md-6 col-lg-6 col-6">
+            <p class="display-6 custom">Gjithsej bonus pikë</p>
+            <div class="col-sm-5 col-md-6 col-lg-3 col-6  ">
+                <input type="number" min="0" placeholder="Insert number" id="bonusPoints" class="input-group-text"
+                       style="background-color: white">
+            </div>
+        </div>
+        <div class="col-sm-7 col-md-6 col-lg-6 col-6 ">
+            <p class="display-6 custom">Përqindja në notë nga bonus pikët</p>
+            <div class="input-group mb-3 col-sm-5 col-md-6 col-lg-3 col-6 ">
+                <div class="input-group-text">
+                    <input class="form-check-input mt-0" type="checkbox" id="bonusCheckButton" value=""
+                           aria-label="Checkbox for following text input" title="Check button if percentage is scaled">
+                </div>
+                <input type="text" class="form-control input-group-text" id="bonusPercentage"
+                       aria-label="Text input with checkbox" placeholder="%" style="background-color: white">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row  text-center justify-content-center">
+        <div class="col-sm-12 col-md-6 col-lg-6 col-6 "><br>
+            <button class="btn btn-outline-secondary" id="calculate">Kalkulo notën përundimtare</button>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-6 col-6 "><br>
+            <button class="btn btn-outline-secondary" id="calculateFinal">Kalkulo notën nga testi</button>
+        </div>
+
+    </div>
+
+    <br>
+
+    <div class="d-flex justify-content-center">
+        <div class="spinner-border" role="status" id="spinner">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+    <div id="result">
+        <hr id="hrID">
+        <div class="row text-center">
+            <div class="col-">
+                <div class="display-6">Rezultati i kalkulimit<br></div>
+                <br>
+            </div>
+        </div>
+
+        <div class="row align-content-start">
+            <div class="col-sm-6 col-md-6 col-lg-6 col-8">
+                <p class="display-6 custom R">Gjithsej përqindje në notë nga testi i parë: </p>
+            </div>
+            <div class="col-sm-6 col-md-2 col-lg-1 col-3 offset-lg-5 offset-md-4 offset-1">
+                <span id="firstExamPercentageShow" class="display-6 custom R"></span><span
+                    class="display-6 custom R"> %</span>
+            </div>
+            <hr>
+        </div>
+
+        <div class="row text-start">
+            <div class="col-sm-6 col-md-6 col-lg-6 col-8">
+                <p class="display-6 custom R">Gjithsej përqindje në notë nga testi i dytë: </p>
+            </div>
+            <div class="col-sm-6 col-md-2 col-lg-1 col-3 offset-lg-5 offset-md-4 offset-1 ">
+                <span id="secondExamPercentageShow" class="display-6 custom R"></span><span class="display-6 custom R"> %</span>
+            </div>
+            <hr>
+        </div>
+
+        <div class="row text-start">
+            <div class="col-sm-6 col-md-6 col-lg-6 col-8">
+                <p class="display-6 custom R">Gjithsej përqindje në notë nga provimi: </p>
+            </div>
+            <div class="col-sm-6 col-md-2 col-lg-1 col-3 offset-lg-5 offset-md-4  offset-1">
+                <span id="finalExamPercentageShow" class="display-6 custom R"></span><span
+                    class="display-6 custom R"> %</span>
+            </div>
+            <hr>
+        </div>
+
+        <div class="row text-start">
+            <div class="col-sm-6 col-md-6 col-lg-6 col-8">
+                <p class="display-6 custom R">Gjithsej përqindje në notë nga detyrat: </p>
+            </div>
+            <div class="col-sm-6 col-md-2 col-lg-1 col-3 offset-lg-5 offset-md-4 offset-1 ">
+                <span id="assigmentsPercentageShow" class="display-6 custom R"></span><span class="display-6 custom R"> %</span>
+            </div>
+            <hr>
+        </div>
+
+        <div class="row text-start">
+            <div class="col-sm-6 col-md-6 col-lg-6 col-8">
+                <p class="display-6 custom R">Gjithsej përqindje në notë nga prezenca: </p>
+            </div>
+            <div class="col-sm-6 col-md-2 col-lg-1 col-3 offset-lg-5 offset-md-4 offset-1 ">
+                <span id="presencePercentageShow" class="display-6 custom R"></span><span
+                    class="display-6 custom R"> %</span>
+            </div>
+            <hr>
+        </div>
+
+        <div class="row text-start">
+            <div class="col-sm-6 col-md-6 col-lg-6 col-8">
+                <p class="display-6 custom R">Gjithsej përqindje në notë nga bonusi: </p>
+            </div>
+            <div class="col-sm-6 col-md-2 col-lg-1 col-3 offset-lg-5 offset-md-4 offset-1">
+                <span id="bonusPercentageShow" class="display-6 custom R"></span><span
+                    class="display-6 custom R"> %</span>
+            </div>
+            <hr>
+        </div>
+
+        <div class="row text-start">
+            <div class="col-sm-6 col-md-6 col-lg-6 col-8">
+                <p class="display-6 custom R">Gjithsej përqindja për notën tuaj: </p>
+            </div>
+            <div class="col-sm-6 col-md-2 col-lg-1 col-3 offset-lg-5 offset-md-4 offset-1">
+                <span id="TotalPercentageShow" class="display-6 custom R"></span><span
+                    class="display-6 custom R"> %</span>
+            </div>
+            <hr>
+        </div>
+
+
+        <div class="row   text-center justify-content-center">
+            <div class="col-sm-12 col-md-6 col-lg-6 col-6"><br>
+                <button class="btn btn-outline-secondary " id="calculateAgain">Kalkulo përsëri
+                </button>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6 col-6 "><br>
+                <button onclick="window.print()" class="btn btn-outline-secondary " id="printbutton1">Printo raportin e notës
+                </button>
+                <br><br>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+
+
+</body>
+</html>
